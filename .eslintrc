@@ -15,7 +15,7 @@
     "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
-  "plugins": ["@typescript-eslint", "prettier"],
+  "plugins": ["@typescript-eslint", "prettier", "import"],
   "rules": {
     "prettier/prettier": ["error"]
   }
