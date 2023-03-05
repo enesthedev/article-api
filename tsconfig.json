@@ -17,6 +17,12 @@
     "paths": {
       "@project/*": [
         "src/*"
+      ],
+      "@transportation/*": [
+        "src/transportation/*"
+      ],
+      "@application/*": [
+        "src/application/*"
       ]
     }
   },
