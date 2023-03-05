@@ -12,14 +12,11 @@
   "extends": [
     "airbnb-base",
     "airbnb-typescript/base",
-    "prettier",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
   ],
-  "plugins": ["@typescript-eslint", "import", "prettier"],
+  "plugins": ["@typescript-eslint", "prettier", "import"],
   "rules": {
-    "prettier/prettier": "error",
-    "import/prefer-default-export": 0,
-    "class-methods-use-this": 0,
-    "@typescript-eslint/no-empty-interface": 0
+    "prettier/prettier": ["error"]
   }
 }
