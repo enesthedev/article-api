@@ -1,6 +1,8 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 
-import { Container } from "inversify";
+import '@application/controllers';
+
+import { Container } from 'inversify';
 
 const container = new Container();
 
