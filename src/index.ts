@@ -1,10 +1,18 @@
 import container from '@project/container';
 
 import { HttpServer } from '@transportation/http';
+import { server as apolloServer } from '@transportation/graphql/server';
+import { GraphQLIntegration } from './transportation/graphql/GraphQLIntegration';
 
-const server = HttpServer.create(container);
-const app = server.build();
+const httpServer = HttpServer.create(container);
+const app = httpServer.build();
 
-app.listen(3000, () => {
-  console.log('listening on http://localhost:3000');
-});
+apolloServer
+  .start()
+  .then(() => GraphQLIntegration.create(app, apolloServer))
+  .then(() =>
+    app.listen(3000, () => {
+      console.log('listening on http://localhost:3000');
+    })
+  )
+  .catch((reason: string) => console.error(reason));
