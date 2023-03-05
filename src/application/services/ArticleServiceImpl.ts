@@ -7,6 +7,6 @@ export class ArticleServiceImpl implements ArticleService {
   @inject(TYPES.ArticleRepository) private _articleRepository: ArticleRepository;
 
   add(props: IArticle): void {
-    this._articleRepository.findById(1);
+    this._articleRepository.create(props);
   }
 }
