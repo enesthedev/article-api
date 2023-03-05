@@ -1,3 +1,3 @@
-import ExampleController from '@application/controllers/ExampleController';
+import ExampleController from './ExampleController';
 
 export { ExampleController };

@@ -1,6 +1,6 @@
 import container from '@project/container';
 
-import { HttpServer } from '@transportation/http/server';
+import { HttpServer } from '@transportation/http';
 
 const server = HttpServer.create(container);
 const app = server.build();

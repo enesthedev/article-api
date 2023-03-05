@@ -3,9 +3,7 @@ import express, { Application, Router } from 'express';
 import { Container } from 'inversify';
 import { AuthProvider, InversifyExpressServer, RoutingConfig } from 'inversify-express-utils';
 
-export interface IHttpServer {}
-
-export class HttpServer extends InversifyExpressServer implements IHttpServer {
+export class HttpServer extends InversifyExpressServer {
   private constructor(
     container: Container,
     customRouter?: Router | null,
