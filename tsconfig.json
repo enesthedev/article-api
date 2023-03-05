@@ -18,11 +18,20 @@
       "@project/*": [
         "src/*"
       ],
+      "@domain/*": [
+        "src/domain/*"
+      ],
       "@transportation/*": [
         "src/transportation/*"
       ],
       "@application/*": [
         "src/application/*"
+      ],
+      "@infrastructure/*": [
+        "src/infrastructure/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
       ]
     }
   },
