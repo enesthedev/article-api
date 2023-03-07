@@ -12,7 +12,7 @@ import {
 import { ArticleCreateInputRule } from '@application/rule/ArticleCreateInputRule';
 
 import { inject } from 'inversify';
-import { Article, ArticleService, UnmarshalledArticle } from '@domain/article';
+import { Article, ArticleService } from '@domain/article';
 import { TYPES } from '@project/types';
 import { RequestValidatorMiddleware } from '@transportation/http/middleware/RequestValidatorMiddleware';
 
@@ -22,10 +22,8 @@ export default class ArticleController extends BaseHttpController implements int
 
   @httpPost('/', ...ArticleCreateInputRule, RequestValidatorMiddleware)
   public async store(@request() req: express.Request, @response() res: express.Response) {
-    this.articleService
-      .create(Article.create(req.body))
-      .then((article: UnmarshalledArticle) => res.json(article));
-
+    const article = await this.articleService.create(Article.create(req.body));
+    return res.json(article);
     // TODO: Prisma error catch statement
   }
 }
