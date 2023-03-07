@@ -27,7 +27,7 @@ export class ArticleRepositoryImpl implements ArticleRepository {
 
   async create(article: UnmarshalledArticle): Promise<UnmarshalledArticle | undefined> {
     try {
-      return this.prisma.article.create({
+      return await this.prisma.article.create({
         data: Article.unmarshal(article),
       });
     } catch (e) {
@@ -35,7 +35,7 @@ export class ArticleRepositoryImpl implements ArticleRepository {
     }
   }
 
-  all(): Promise<UnmarshalledArticle | undefined> {
-    return Promise.resolve(undefined);
+  all(): Promise<UnmarshalledArticle[] | undefined> {
+    return this.prisma.article.findMany();
   }
 }

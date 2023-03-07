@@ -9,4 +9,8 @@ export class ArticleServiceImpl implements ArticleService {
   async create(article: UnmarshalledArticle): Promise<UnmarshalledArticle> {
     return this.articleRepository.create(article);
   }
+
+  all(): Promise<UnmarshalledArticle[] | undefined> {
+    return this.articleRepository.all();
+  }
 }
