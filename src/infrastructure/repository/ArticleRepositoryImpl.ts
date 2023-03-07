@@ -34,4 +34,8 @@ export class ArticleRepositoryImpl implements ArticleRepository {
       return Promise.reject(e);
     }
   }
+
+  all(): Promise<UnmarshalledArticle | undefined> {
+    return Promise.resolve(undefined);
+  }
 }
