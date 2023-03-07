@@ -1,5 +1,5 @@
-import { IArticle } from '@domain/article';
+import { UnmarshalledArticle } from '@domain/article/Article';
 
 export interface ArticleService {
-  add(props: IArticle): void;
+  create(props: UnmarshalledArticle): Promise<UnmarshalledArticle | undefined>;
 }

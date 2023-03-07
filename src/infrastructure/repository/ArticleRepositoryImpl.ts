@@ -1,35 +1,37 @@
 import { ArticleRepository } from '@domain/article/ArticleRepository';
-import { IArticle } from '@domain/article/Article';
 import { inject, injectable } from 'inversify';
-import { TYPES } from '@project/types';
 import { PrismaClientProvider } from '@infrastructure/database/prisma/PrismaClientProvider';
 import { PrismaClient } from '@prisma/client';
+import { Article, UnmarshalledArticle } from '@domain/article';
 
 @injectable()
 export class ArticleRepositoryImpl implements ArticleRepository {
-  private _prisma: PrismaClient;
+  private prisma: PrismaClient;
 
   constructor(@inject(PrismaClientProvider) private readonly prismaProvider: PrismaClientProvider) {
-    this._prisma = prismaProvider.getPrismaClient();
+    this.prisma = prismaProvider.getPrismaClient();
   }
 
-  deleteById(id: number): Promise<IArticle | undefined> {
+  deleteById(id: number): Promise<UnmarshalledArticle | undefined> {
     return Promise.resolve(undefined);
   }
 
-  findById(id: number): Promise<IArticle | undefined> {
+  findById(id: number): Promise<UnmarshalledArticle | undefined> {
     console.log(id);
     return Promise.resolve(undefined);
   }
 
-  updateById(id: number, props: IArticle): Promise<IArticle | undefined> {
+  updateById(id: number, props: UnmarshalledArticle): Promise<UnmarshalledArticle | undefined> {
     return Promise.resolve(undefined);
   }
 
-  async create(props: IArticle): Promise<IArticle | undefined> {
-    const article = await this._prisma.article.create({
-      data: props,
-    });
-    return Promise.resolve(undefined);
+  async create(article: UnmarshalledArticle): Promise<UnmarshalledArticle | undefined> {
+    try {
+      return this.prisma.article.create({
+        data: Article.unmarshal(article),
+      });
+    } catch (e) {
+      return Promise.reject(e);
+    }
   }
 }

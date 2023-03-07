@@ -1,24 +1,34 @@
 import { BaseEntity } from '@domain/BaseEntity';
 
-export interface IArticle {
-  id?: number;
+export interface UnmarshalledArticle {
+  id?: string;
   title: string;
   content: string;
-  active: boolean;
+  active?: boolean;
 }
 
-export class Article extends BaseEntity<IArticle> {
-  private constructor(props: IArticle) {
-    const { id, ...otherProps } = props;
-    super(otherProps, id);
+export class Article extends BaseEntity<UnmarshalledArticle> {
+  private constructor(props: UnmarshalledArticle) {
+    const { id, ...data } = props;
+    super(data, id);
   }
 
-  public static create(props: IArticle) {
-    return new Article(props);
+  public static create(props: UnmarshalledArticle): Article {
+    const instance = new Article(props);
+    return instance;
   }
 
-  get id(): number {
-    return this.id;
+  public static unmarshal(article: UnmarshalledArticle): UnmarshalledArticle {
+    return {
+      id: article.id,
+      title: article.title,
+      content: article.content,
+      active: article.active,
+    };
+  }
+
+  get id(): string {
+    return this._id;
   }
 
   get title(): string {

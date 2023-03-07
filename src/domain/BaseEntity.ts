@@ -1,19 +1,24 @@
-export abstract class BaseEntity<T> {
-  private readonly _id: number;
+import { v4 as uuid } from 'uuid';
 
-  protected get id(): number {
-    return this._id;
-  }
+export abstract class BaseEntity<T> {
+  protected readonly _id: string;
 
   protected props: T;
 
-  protected constructor(props: T, id: number) {
-    this._id = id;
+  protected constructor(props: T, id?: string) {
+    this._id = id || uuid();
     this.props = props;
   }
 
   public equals(object?: BaseEntity<T>): boolean {
-    if (object == null || object === undefined || this === object) return true;
-    return this.id === object.id;
+    if (object == null || object === undefined) {
+      return false;
+    }
+
+    if (this === object) {
+      return true;
+    }
+
+    return this._id === object._id;
   }
 }
