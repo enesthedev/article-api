@@ -9,7 +9,7 @@ const app = httpServer.build();
 
 apolloServer
   .start()
-  .then(() => GraphQLIntegration.create(app, apolloServer))
+  .then(() => GraphQLIntegration.create(app, apolloServer, container))
   .then(() =>
     app.listen(3000, () => {
       console.log('listening on http://localhost:3000');
