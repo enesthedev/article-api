@@ -4,9 +4,6 @@ import { ArgsValue } from 'nexus/dist-esm/typegenTypeHelpers';
 
 export const ArticlesResolver = async (
   event: Event,
-  args: ArgsValue<any, any>,
+  args: ArgsValue<never, never>,
   context: AppContext
-): Promise<UnmarshalledArticle[]> => {
-  const articles = await context.articleService.all();
-  return articles;
-};
+): Promise<UnmarshalledArticle[]> => context.articleService.all();
