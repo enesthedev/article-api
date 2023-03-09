@@ -1,5 +1,5 @@
 import { extendType, objectType } from 'nexus';
-import { AppContext } from '@transportation/graphql/AppContext';
+import { ArticlesResolver } from '@transportation/graphql/resolver/ArticleResolver';
 
 export const Article = objectType({
   name: 'Article',
@@ -16,10 +16,7 @@ export const ArticlesQuery = extendType({
   definition(t) {
     t.nonNull.list.field('articles', {
       type: 'Article',
-      async resolve(root, args, context: AppContext) {
-        const articles = await context.articleService.all();
-        return articles;
-      },
+      resolve: ArticlesResolver,
     });
   },
 });
